@@ -284,14 +284,14 @@
         
         <div class="features">
             <div class="feature">
-                <div class="feature-icon">📊</div>
-                <h3>Real-time Dashboards</h3>
-                <p>Interactive visualizations that update instantly, giving you live insights into your business performance.</p>
-            </div>
-            <div class="feature">
                 <div class="feature-icon">🧠</div>
                 <h3>AI-Powered Analytics</h3>
                 <p>Advanced machine learning algorithms that automatically discover patterns and insights in your data.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">📊</div>
+                <h3>Real-time Dashboards</h3>
+                <p>Interactive visualizations that update instantly, giving you live insights into your business performance.</p>
             </div>
             <div class="feature">
                 <div class="feature-icon">🔮</div>
@@ -301,8 +301,11 @@
         </div>
         
         <div class="cta-section">
-            <form class="email-form" onsubmit="handleSubmit(event)">
-                <input type="email" class="email-input" placeholder="Enter your email" required>
+            <form class="email-form" action="https://formspree.io/f/mldnkzjd" method="POST" onsubmit="handleSubmit(event)">
+                <input type="hidden" name="_subject" value="New ABI Coming Soon Signup">
+                <input type="hidden" name="_next" value="thank-you">
+                <input type="text" name="_gotcha" style="display:none">
+                <input type="email" name="email" class="email-input" placeholder="Enter your email" required>
                 <button type="submit" class="notify-btn">Notify Me</button>
             </form>
             <div class="launch-date">Expected Launch: Q4 2025</div>
@@ -353,25 +356,26 @@
         
         // Handle form submission
         function handleSubmit(event) {
-            event.preventDefault();
-            const email = event.target.querySelector('.email-input').value;
             const button = event.target.querySelector('.notify-btn');
+            const email = event.target.querySelector('.email-input').value;
             
-            // Simulate API call
+            // Show loading state
             button.textContent = 'Submitting...';
             button.disabled = true;
             
+            // Let the form submit to Formspree
+            // The form will redirect or show confirmation based on Formspree settings
             setTimeout(() => {
+                // This only runs if there's no redirect
                 button.textContent = 'Thank You!';
                 button.style.background = 'linear-gradient(135deg, #00c851 0%, #00ff6b 100%)';
-                event.target.querySelector('.email-input').value = '';
                 
                 setTimeout(() => {
                     button.textContent = 'Notify Me';
                     button.style.background = 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)';
                     button.disabled = false;
                 }, 2000);
-            }, 1000);
+            }, 500);
         }
         
         // Initialize animations
