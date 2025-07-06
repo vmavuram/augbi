@@ -166,11 +166,17 @@
 
         .email-form {
             display: flex;
-            gap: 1rem;
+            flex-direction: column;
+            gap: 1.5rem;
             margin-bottom: 2rem;
-            max-width: 400px;
+            max-width: 450px;
             margin-left: auto;
             margin-right: auto;
+        }
+
+        .form-group {
+            display: flex;
+            width: 100%;
         }
 
         .email-input {
@@ -183,6 +189,69 @@
             font-size: 1rem;
             backdrop-filter: blur(10px);
             transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .interest-options {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            text-align: left;
+        }
+
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            padding: 0.5rem;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .checkbox-container:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateX(5px);
+        }
+
+        .checkbox-container input[type="checkbox"] {
+            display: none;
+        }
+
+        .checkmark {
+            width: 20px;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 4px;
+            margin-right: 1rem;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .checkbox-container input[type="checkbox"]:checked + .checkmark {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            border-color: #4facfe;
+        }
+
+        .checkbox-container input[type="checkbox"]:checked + .checkmark:after {
+            content: "✓";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .checkbox-text {
+            flex: 1;
+            line-height: 1.4;
         }
 
         .email-input:focus {
@@ -263,8 +332,9 @@
             .title { font-size: 2.5rem; }
             .subtitle { font-size: 1.2rem; }
             .description { font-size: 1rem; }
-            .email-form { flex-direction: column; }
             .features { grid-template-columns: 1fr; }
+            .interest-options { gap: 0.75rem; }
+            .checkbox-container { font-size: 0.9rem; }
         }
     </style>
 </head>
@@ -301,14 +371,32 @@
         </div>
         
         <div class="cta-section">
-            <form class="email-form" action="https://formspree.io/f/mldnkzjd" method="POST" onsubmit="handleSubmit(event)">
+            <form class="email-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" onsubmit="handleSubmit(event)">
                 <input type="hidden" name="_subject" value="New ABI Coming Soon Signup">
                 <input type="hidden" name="_next" value="thank-you">
                 <input type="text" name="_gotcha" style="display:none">
-                <input type="email" name="email" class="email-input" placeholder="Enter your email" required>
-                <button type="submit" class="notify-btn">Notify Me</button>
+                
+                <div class="form-group">
+                    <input type="email" name="email" class="email-input" placeholder="Enter your email" required>
+                </div>
+                
+                <div class="interest-options">
+                    <label class="checkbox-container">
+                        <input type="checkbox" name="notify_updates" value="yes" checked>
+                        <span class="checkmark"></span>
+                        <span class="checkbox-text">📧 Notify me with updates</span>
+                    </label>
+                    
+                    <label class="checkbox-container">
+                        <input type="checkbox" name="want_contribute" value="yes">
+                        <span class="checkmark"></span>
+                        <span class="checkbox-text">🤝 I want to contribute</span>
+                    </label>
+                </div>
+                
+                <button type="submit" class="notify-btn">Connect Me</button>
             </form>
-            <div class="launch-date">Expected Launch: Q4 2025</div>
+            <div class="launch-date">Expected Launch: Q3 2025</div>
         </div>
         
         <div class="social-links">
